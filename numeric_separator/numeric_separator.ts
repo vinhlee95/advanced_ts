@@ -14,6 +14,6 @@ class Amount {
   }
 }
 
-const invalid_amount = new Amount(1_000_000_000)
+// const invalid_amount = new Amount(1_000_000_000)
 const valid_amount = new Amount(100_000)
-console.log(valid_amount.formatByMillion())
+console.log('Format by million', valid_amount.formatByMillion())
