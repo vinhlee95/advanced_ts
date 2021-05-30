@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run-ts": "ts-node-dev --respawn --transpile-only"
+    "run-ts": "ts-node-dev --respawn --transpile-only",
+    "validate": "tsc --noEmit"
   },
   "author": "Vinh Le (lethanhvinh95@gmail.com)",
   "license": "MIT",
