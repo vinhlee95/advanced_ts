@@ -14,6 +14,6 @@ interface Bar {
 
 type FooBar = Foo | Bar
 ```
-* [Example](./type_inference/du_redux.ts)
+* [Example](./discriminate_union/discriminate_unions.ts)
 * Docs: https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions
 * The `never` type: https://www.typescriptlang.org/docs/handbook/2/narrowing.html#the-never-type
