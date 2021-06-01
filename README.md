@@ -1,5 +1,20 @@
 # Advanced TypeScript patterns
 
+## Installation
+```shell
+npm install
+```
+
+To type-check the whole project:
+```shell
+npm run validate
+```
+
+To run an example in watch mode:
+```shell
+npm run run-ts module_name
+```
+
 ## 1. Discriminate union
 ```typescript
 interface Foo {
