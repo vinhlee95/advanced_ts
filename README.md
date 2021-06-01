@@ -32,3 +32,30 @@ type ConcreteReadonlyFoo = {
 
 * [Example](./mapped_types/index.ts)
 * Docs: https://www.typescriptlang.org/docs/handbook/2/mapped-types.html
+
+## 3. Unknown type
+TS 3.0 introduces `unknown` type - the type-safe counterpart of `any`.
+
+```typescript
+const formatString = (value: unknown) => {
+  // ❌ Error because value type is unknown
+  // return value.toUpperCase()
+
+  // ✅ OK because we already checked the type here
+  if(typeof(value) === "string") {
+    return value.toUpperCase()
+  }
+
+  // ✅ OK thanks to custom type guard
+  if(isNumber(value)) {
+    return String(value)
+  }
+}
+
+const isNumber = (value): value is number => {
+  return typeof(value) === "number"
+}
+```
+
+* [Example](./unknown_type/index.ts)
+* Docs: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-0.html#new-unknown-top-type
