@@ -74,3 +74,17 @@ const isNumber = (value): value is number => {
 
 * [Example](./unknown_type/index.ts)
 * Docs: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-0.html#new-unknown-top-type
+
+## 4. Conditional type
+```typescript
+type StringOrNumber<T> = T extends number ? NumberType : StringType
+
+function createLabelWithConditionalType<T extends number | string>(idOrName: T): StringOrNumber<T> {
+  throw "unimplemented"
+}
+
+const conditionalTypedLabel = createLabelWithConditionalType(12) // should have NumberType type because typeof(12) === "number"
+```
+
+* [Example](./conditional_type/index.ts)
+* Docs: https://www.typescriptlang.org/docs/handbook/2/conditional-types.html
