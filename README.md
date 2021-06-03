@@ -88,3 +88,18 @@ const conditionalTypedLabel = createLabelWithConditionalType(12) // should have 
 
 * [Example](./conditional_type/index.ts)
 * Docs: https://www.typescriptlang.org/docs/handbook/2/conditional-types.html
+
+## 5. Generics
+```typescript
+function convertValueToArray<T>(value: T): T[] {
+  return [value]
+}
+
+const nameList = convertValueToArray("foo")
+
+type Person = {name: string, age: number} // string[] type
+const peopleList = convertValueToArray<Person>({name: "Foo", age: 22}) // Person[] type
+```
+
+* Docs: https://www.typescriptlang.org/docs/handbook/2/generics.html
+* Resourse: https://blog.logrocket.com/getting-started-with-typescript-generics/
