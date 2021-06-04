@@ -51,9 +51,58 @@ type UserType = {
 
 type NonNullableType<Type> = {
   [K in keyof Type]: Type[K] extends null ? number : Type[K] 
-}
+}[keyof Type]
 
 type NonNullableUserType = NonNullableType<UserType>
 
-const myUser: NonNullableUserType = {name: "foo", email: "foo"}
 
+// 
+// --------------------FILTERING TYPES WITH CONDITIONAL & "never"---------------------------
+// More examples from the docs:
+// https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html#type-inference-in-conditional-types
+// 
+
+/**
+ * Filtering property names represeting a function
+ * 
+ */
+type FunctionPropertyNames<T> = {
+  [K in keyof T]: T[K] extends Function ? K : never;
+}[keyof T]
+
+
+/**
+ * Filtering property names not represeting a function
+ * 
+ */
+type NonFunctionPropertyNames<T> = {
+  [K in keyof T]: T[K] extends Function ? never : K;
+}[keyof T]
+
+type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>
+
+interface Part {
+  id: number;
+  name: string;
+  subparts: Part[];
+  updatePart(newName: string): void;
+}
+
+type FunctionPropertyName = FunctionPropertyNames<Part> // "updatePart" 
+type NonFunctionPropertyName = NonFunctionPropertyNames<Part> // "id" | "name" | "subparts"
+type NonFunctionProperty = NonFunctionProperties<Part> // { id: number, name: string, subparts: Part[] }
+
+// 
+// ------------------------------EXTRACT & EXCLUDE-------------------------------------------
+//
+
+/**
+ * Example of extracting only string and boolean type
+ */
+type AllTypes = string | boolean | never | object
+type OnlyStringAndBoolean = Extract<AllTypes, string | boolean> // string | boolean
+
+/**
+ * Example of excluding never type
+ */
+type NotNeverType = Exclude<AllTypes, never>
